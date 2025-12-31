@@ -1,0 +1,7 @@
+{
+  "name": "Dra. Renata Sacomam - Harmonização Facial Premium",
+  "description": "Landing page de alta conversão para Harmonização Facial, focada em autoridade e agendamento via WhatsApp.",
+  "requestFramePermissions": [
+    "camera"
+  ]
+}
