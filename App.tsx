@@ -2,6 +2,7 @@
 import React, { useState, useEffect } from 'react';
 import ChoiceScreen from './components/ChoiceScreen';
 import Quiz from './components/Quiz';
+import AnalyzingScreen from './components/AnalyzingScreen';
 import ResultPage from './components/ResultPage';
 import LandingPage from './components/LandingPage';
 import { AppState, QuizResult } from './types';
@@ -17,7 +18,7 @@ const App: React.FC = () => {
 
   const handleFinishQuiz = (answers: QuizResult) => {
     setQuizAnswers(answers);
-    setView('result');
+    setView('analyzing');
   };
 
   const renderView = () => {
@@ -26,6 +27,8 @@ const App: React.FC = () => {
         return <ChoiceScreen onDirect={() => setView('site')} onQuiz={() => setView('quiz')} />;
       case 'quiz':
         return <Quiz onFinish={handleFinishQuiz} onBack={() => setView('choice')} />;
+      case 'analyzing':
+        return <AnalyzingScreen onComplete={() => setView('result')} />;
       case 'result':
         return (
           <ResultPage 
