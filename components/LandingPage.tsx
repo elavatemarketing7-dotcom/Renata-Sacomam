@@ -21,38 +21,39 @@ const LandingPage: React.FC = () => {
     <div className="w-full bg-white min-h-screen pb-10">
       
       {/* 1. HERO SECTION (WHITE LUXURY) */}
-      <section className="relative h-[90vh] lg:h-screen flex flex-col items-center justify-end px-6 pb-12 overflow-hidden bg-luxury-white">
+      <section className="relative h-[90vh] lg:h-screen flex flex-col items-center justify-end px-6 pb-12 lg:pb-24 overflow-hidden bg-luxury-white">
         <div className="absolute inset-0 z-0">
           <img 
             src={IMAGES.EXPERT_HERO} 
             alt="Dra. Renata Sacomam" 
             className="w-full h-full object-cover object-top lg:object-[center_20%] transition-transform duration-[3s] ease-out scale-105"
           />
-          <div className="absolute inset-0 bg-gradient-to-t from-white via-white/10 to-transparent"></div>
+          {/* Gradiente mais denso para garantir que o texto preto sobressaia */}
+          <div className="absolute inset-0 bg-gradient-to-t from-white via-white/40 to-transparent"></div>
         </div>
 
         <div className="relative z-10 text-center w-full max-w-4xl space-y-8 animate-in fade-in slide-in-from-bottom-8 duration-1000">
-          <div className="space-y-4">
-            <span className="inline-block text-premium-gold text-[10px] lg:text-xs font-black tracking-[0.6em] uppercase bg-white/80 backdrop-blur-md px-6 py-2 rounded-full border border-premium-gold/30 shadow-sm">
+          <div className="space-y-4 lg:space-y-6">
+            <span className="inline-block text-premium-gold text-[10px] lg:text-xs font-black tracking-[0.6em] uppercase bg-white/95 backdrop-blur-md px-6 py-2 rounded-full border border-premium-gold/40 shadow-xl">
               Harmonização Facial de Luxo
             </span>
             <div className="space-y-1">
-               <h2 className="text-black/40 text-base lg:text-xl font-medium tracking-[0.3em] uppercase">Dra.</h2>
-               <h1 className="text-5xl lg:text-9xl font-serif text-black tracking-tighter leading-none">
+               <h2 className="text-black/60 text-base lg:text-xl font-bold tracking-[0.4em] uppercase">Dra.</h2>
+               <h1 className="text-6xl lg:text-9xl font-serif text-black tracking-tight leading-none drop-shadow-2xl">
                  Renata Sacomam
                </h1>
             </div>
-            <p className="text-lg lg:text-2xl text-neutral-600 font-light max-w-2xl mx-auto leading-relaxed">
-              Elevando a sua autoestima com <span className="text-premium-gold font-semibold italic">elegância</span> e resultados naturalmente belos.
+            <p className="text-2xl lg:text-4xl text-black font-semibold max-w-2xl mx-auto leading-tight drop-shadow-sm">
+              Elevando a sua autoestima com <span className="text-premium-gold font-extrabold italic">elegância</span> e resultados naturalmente belos.
             </p>
           </div>
 
-          <div className="flex flex-col items-center gap-5">
-            <a href={WHATSAPP_URL} target="_blank" rel="noopener noreferrer" className="group relative flex items-center justify-center gap-4 w-full max-w-[380px] bg-premium-gold p-5 lg:p-7 rounded-2xl text-white font-black text-lg lg:text-xl shadow-[0_20px_40px_rgba(212,175,55,0.3)] active:scale-95 transition-all">
+          <div className="flex flex-col items-center gap-5 pt-4">
+            <a href={WHATSAPP_URL} target="_blank" rel="noopener noreferrer" className="group relative flex items-center justify-center gap-4 w-full max-w-[380px] bg-premium-gold p-5 lg:p-7 rounded-2xl text-white font-black text-lg lg:text-xl shadow-[0_20px_40px_rgba(212,175,55,0.4)] active:scale-95 transition-all">
               <span>AGENDAR CONSULTA AGORA</span>
               <MessageCircle size={24} className="group-hover:rotate-12 transition-transform" />
             </a>
-            <p className="text-black/30 text-[9px] lg:text-[11px] font-black uppercase tracking-[0.4em]">Atendimento VIP em Caarapó/MS</p>
+            <p className="text-black/60 text-[9px] lg:text-[11px] font-black uppercase tracking-[0.4em]">Atendimento VIP em Caarapó/MS</p>
           </div>
         </div>
       </section>
