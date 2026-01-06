@@ -1,8 +1,8 @@
 
 import React, { useState } from 'react';
-import { QUIZ_QUESTIONS, IMAGES } from '../constants';
+import { QUIZ_QUESTIONS, IMAGES, WHATSAPP_URL } from '../constants';
 import { QuizResult } from '../types';
-import { ChevronLeft, Sparkles, ShieldCheck } from 'lucide-react';
+import { ChevronLeft, Sparkles, ShieldCheck, MessageCircle } from 'lucide-react';
 
 interface QuizProps {
   onFinish: (answers: QuizResult) => void;
@@ -66,9 +66,26 @@ const Quiz: React.FC<QuizProps> = ({ onFinish, onBack }) => {
       <div className="relative z-10 w-full max-w-[360px] lg:max-w-md glass-luxury rounded-[3rem] pt-14 pb-8 px-6 lg:pt-24 lg:pb-14 lg:px-12 flex flex-col gap-6 lg:gap-8 animate-in zoom-in duration-500 shadow-2xl shadow-black/5">
         
         <header className="flex flex-col items-center gap-1 text-center">
+          {/* Botão de Voltar */}
           <button onClick={onBack} className="absolute left-7 top-12 p-2 text-black/20 hover:text-premium-gold transition-colors active:scale-90">
             <ChevronLeft size={24} />
           </button>
+
+          {/* Botão de WhatsApp (Novo) */}
+          <a 
+            href={WHATSAPP_URL} 
+            target="_blank" 
+            rel="noopener noreferrer"
+            className="absolute right-7 top-12 p-2 bg-green-50 text-green-600 rounded-full hover:bg-green-100 transition-all active:scale-90 shadow-sm border border-green-100 flex items-center justify-center"
+            title="Dúvidas? Fale comigo"
+          >
+            <MessageCircle size={20} className="fill-current opacity-80" />
+            <span className="absolute -top-1 -right-1 flex h-3 w-3">
+              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
+              <span className="relative inline-flex rounded-full h-3 w-3 bg-green-500"></span>
+            </span>
+          </a>
+
           <div className="space-y-0.5">
             <p className="font-signature text-3xl lg:text-4xl text-black">Diagnóstico</p>
             <p className="text-[8px] font-black tracking-[0.4em] uppercase text-black/30">Avaliação Personalizada</p>

@@ -1,7 +1,7 @@
 
 import React from 'react';
-import { IMAGES } from '../constants';
-import { Sparkles, ShieldCheck, ArrowRight } from 'lucide-react';
+import { IMAGES, WHATSAPP_URL } from '../constants';
+import { Sparkles, ShieldCheck, ArrowRight, MessageCircle } from 'lucide-react';
 
 interface ChoiceScreenProps {
   onDirect: () => void;
@@ -32,7 +32,7 @@ const ChoiceScreen: React.FC<ChoiceScreenProps> = ({ onDirect, onQuiz }) => {
       {/* 2. PAINEL DE CONTROLE - Compactado no Mobile */}
       <div className="relative z-10 flex-grow lg:w-[45%] bg-luxury-white px-6 pt-2 pb-10 lg:px-16 lg:py-0 flex flex-col items-center justify-center text-center animate-in slide-in-from-bottom-12 lg:slide-in-from-right-12 duration-1000">
         
-        <div className="space-y-5 lg:space-y-10 w-full max-w-sm">
+        <div className="space-y-6 lg:space-y-12 w-full max-w-sm">
           <div className="space-y-2 lg:space-y-5">
             <div className="flex items-center justify-center gap-2">
               <ShieldCheck size={14} className="text-premium-gold" />
@@ -42,29 +42,51 @@ const ChoiceScreen: React.FC<ChoiceScreenProps> = ({ onDirect, onQuiz }) => {
               A jornada para sua <br className="hidden sm:block"/>
               <span className="text-premium-gold italic">melhor versão.</span>
             </h1>
-            <p className="text-neutral-500 text-[11px] lg:text-sm font-medium">Inicie seu diagnóstico ou acesse o site oficial.</p>
+            <p className="text-neutral-500 text-[11px] lg:text-sm font-medium">Selecione como deseja iniciar sua transformação.</p>
           </div>
 
-          <div className="w-full space-y-3 lg:space-y-4">
+          <div className="w-full space-y-4">
+            {/* BOTÃO PRINCIPAL: QUIZ */}
             <button 
               onClick={onQuiz}
-              className="group relative w-full bg-premium-gold text-white py-4 lg:py-7 rounded-2xl font-black text-xs lg:text-base tracking-widest uppercase flex items-center justify-center gap-3 overflow-hidden transition-all active:scale-95 shadow-xl shadow-premium-gold/20"
+              className="group relative w-full bg-premium-gold text-white py-4.5 lg:py-7 rounded-2xl font-black text-xs lg:text-base tracking-widest uppercase flex flex-col items-center justify-center gap-1 overflow-hidden transition-all active:scale-95 shadow-xl shadow-premium-gold/20"
             >
-              <span className="relative z-10">INICIAR DIAGNÓSTICO DIGITAL</span>
-              <ArrowRight size={16} className="relative z-10 group-hover:translate-x-1 transition-transform" />
+              <div className="flex items-center gap-3">
+                <span className="relative z-10">INICIAR DIAGNÓSTICO DIGITAL</span>
+                <ArrowRight size={16} className="relative z-10 group-hover:translate-x-1 transition-transform" />
+              </div>
+              <span className="text-[8px] opacity-70 font-bold tracking-widest">Leva apenas 1 minuto</span>
             </button>
 
+            {/* BOTÃO SECUNDÁRIO: WHATSAPP (PROMPT DIRECIONAL - COR NEUTRA) */}
+            <a 
+              href={WHATSAPP_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="group relative w-full bg-white border border-neutral-200 text-neutral-500 py-4 lg:py-6 rounded-2xl font-bold text-xs lg:text-sm tracking-widest uppercase flex items-center justify-center gap-3 transition-all hover:bg-neutral-50 hover:text-black hover:border-neutral-300 active:scale-95"
+            >
+              <div className="relative">
+                <MessageCircle size={18} className="text-neutral-400 group-hover:text-black transition-colors" />
+                <span className="absolute -top-1 -right-1 flex h-2 w-2">
+                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-neutral-300 opacity-75"></span>
+                  <span className="relative inline-flex rounded-full h-2 w-2 bg-neutral-400 group-hover:bg-black transition-colors"></span>
+                </span>
+              </div>
+              FALAR DIRETAMENTE NO WHATSAPP
+            </a>
+
+            {/* LINK TERCIÁRIO: SITE */}
             <button 
               onClick={onDirect}
-              className="flex items-center justify-center gap-2 w-full py-3 text-black/40 hover:text-premium-gold transition-all group"
+              className="flex items-center justify-center gap-2 w-full py-2 text-black/30 hover:text-premium-gold transition-all group"
             >
               <Sparkles size={12} className="text-premium-gold" />
-              <span className="text-[9px] lg:text-xs font-bold tracking-[0.3em] uppercase">Ir direto para o site</span>
+              <span className="text-[9px] lg:text-xs font-bold tracking-[0.3em] uppercase">Explorar site oficial</span>
             </button>
           </div>
         </div>
 
-        <div className="mt-6 lg:mt-20 opacity-40 lg:opacity-100">
+        <div className="mt-8 lg:mt-20 opacity-40 lg:opacity-100">
           <p className="text-[8px] lg:text-[11px] font-black tracking-[0.4em] uppercase text-black/30 italic">Caarapó • MS</p>
         </div>
       </div>
