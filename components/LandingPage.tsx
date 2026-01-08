@@ -28,7 +28,6 @@ const LandingPage: React.FC = () => {
             alt="Dra. Renata Sacomam" 
             className="w-full h-full object-cover object-top lg:object-[center_20%] transition-transform duration-[3s] ease-out scale-105"
           />
-          {/* Gradiente mais denso para garantir que o texto preto sobressaia */}
           <div className="absolute inset-0 bg-gradient-to-t from-white via-white/40 to-transparent"></div>
         </div>
 
@@ -54,6 +53,57 @@ const LandingPage: React.FC = () => {
               <MessageCircle size={24} className="group-hover:rotate-12 transition-transform" />
             </a>
             <p className="text-black/60 text-[9px] lg:text-[11px] font-black uppercase tracking-[0.4em]">Atendimento VIP em Caarapó/MS</p>
+          </div>
+        </div>
+      </section>
+
+      {/* SEÇÃO DE VÍDEO DE PROCEDIMENTO (LIMPADA) */}
+      <section className="py-20 lg:py-32 px-6 lg:px-20 bg-luxury-white">
+        <div className="max-w-7xl mx-auto flex flex-col lg:flex-row items-center gap-12 lg:gap-20">
+          
+          {/* Container do Vídeo */}
+          <div className="relative w-full lg:w-3/5 group">
+            <div className="absolute -inset-4 bg-premium-gold/5 blur-2xl rounded-[3rem] group-hover:bg-premium-gold/10 transition-all duration-700"></div>
+            <div className="relative aspect-[16/9] w-full bg-black rounded-[2.5rem] overflow-hidden shadow-2xl border-[6px] border-white">
+              <video 
+                src="https://i.imgur.com/6OaMXYE.mp4" 
+                className="w-full h-full object-cover"
+                autoPlay 
+                muted 
+                loop 
+                playsInline
+              />
+              {/* O overlay agora apenas escurece levemente no hover, sem ícones obstruindo a visão */}
+              <div className="absolute inset-0 bg-black/0 group-hover:bg-black/5 transition-all duration-500"></div>
+            </div>
+            <div className="absolute -bottom-6 -right-6 hidden lg:block">
+               <div className="bg-white p-6 rounded-3xl shadow-xl border border-premium-gold/20 flex items-center gap-4 animate-bounce duration-[3s]">
+                  <div className="h-2 w-2 bg-green-500 rounded-full animate-pulse"></div>
+                  <span className="text-[10px] font-black uppercase tracking-widest text-black">Procedimento em Foco</span>
+               </div>
+            </div>
+          </div>
+
+          {/* Texto de Apoio */}
+          <div className="w-full lg:w-2/5 space-y-8 text-center lg:text-left">
+            <div className="space-y-6">
+              <h2 className="text-3xl lg:text-5xl font-serif text-black leading-tight">
+                A arte de <span className="text-premium-gold italic">esculpir</span> com alma.
+              </h2>
+              <p className="text-neutral-800 text-lg lg:text-xl font-medium leading-relaxed">
+                Descubra como a beleza pode ser realçada com técnica, sensibilidade e propósito. 
+                Resultados naturais e transformadores.
+              </p>
+              <p className="text-neutral-600 text-base leading-relaxed italic border-l-2 border-premium-gold/30 pl-6">
+                Aperte o play e sinta a diferença de ser cuidada por quem entende que sua beleza é única, 
+                e merece atenção especial.
+              </p>
+            </div>
+            
+            <a href={WHATSAPP_URL} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-3 text-black font-black text-xs tracking-[0.3em] uppercase hover:text-premium-gold transition-colors group">
+              Quero este resultado
+              <ArrowRight size={16} className="group-hover:translate-x-2 transition-transform" />
+            </a>
           </div>
         </div>
       </section>
