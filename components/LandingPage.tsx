@@ -57,7 +57,7 @@ const LandingPage: React.FC = () => {
         </div>
       </section>
 
-      {/* SEÇÃO DE VÍDEO DE PROCEDIMENTO (LIMPADA) */}
+      {/* SEÇÃO DE VÍDEO DE PROCEDIMENTO */}
       <section className="py-20 lg:py-32 px-6 lg:px-20 bg-luxury-white">
         <div className="max-w-7xl mx-auto flex flex-col lg:flex-row items-center gap-12 lg:gap-20">
           
@@ -73,7 +73,6 @@ const LandingPage: React.FC = () => {
                 loop 
                 playsInline
               />
-              {/* O overlay agora apenas escurece levemente no hover, sem ícones obstruindo a visão */}
               <div className="absolute inset-0 bg-black/0 group-hover:bg-black/5 transition-all duration-500"></div>
             </div>
             <div className="absolute -bottom-6 -right-6 hidden lg:block">
@@ -167,6 +166,48 @@ const LandingPage: React.FC = () => {
                  <img src={url} alt={`Dra Renata ${i}`} className="w-full h-full object-cover" />
               </div>
             ))}
+          </div>
+        </div>
+      </section>
+
+      {/* SEÇÃO DE COMENTÁRIOS DE PACIENTES */}
+      <section className="py-24 px-6 lg:px-20 bg-white overflow-hidden">
+        <div className="max-w-7xl mx-auto">
+          <div className="text-center mb-16 space-y-4">
+            <div className="flex justify-center gap-1 mb-2">
+              {[...Array(5)].map((_, i) => (
+                <Star key={i} size={16} className="fill-premium-gold text-premium-gold" />
+              ))}
+            </div>
+            <h2 className="text-3xl lg:text-6xl font-serif text-black">O carinho de <span className="text-premium-gold italic">quem viveu a experiência</span></h2>
+            <p className="text-neutral-500 text-sm lg:text-lg max-w-2xl mx-auto">
+              A satisfação de minhas pacientes é o combustível para minha busca incessante pela perfeição.
+            </p>
+          </div>
+
+          <div className="flex gap-6 overflow-x-auto pb-12 no-scrollbar snap-x lg:grid lg:grid-cols-3">
+            {IMAGES.TESTIMONIALS.map((url, i) => (
+              <div 
+                key={i} 
+                className="snap-center shrink-0 w-[300px] lg:w-full bg-luxury-white rounded-[2rem] overflow-hidden border border-premium-gold/10 shadow-lg hover:shadow-2xl transition-all duration-500 cursor-pointer group"
+                onClick={() => setSelectedImage(url)}
+              >
+                <div className="p-1">
+                  <img 
+                    src={url} 
+                    alt={`Depoimento ${i + 1}`} 
+                    className="w-full h-auto rounded-[1.8rem] group-hover:scale-[1.02] transition-transform duration-500" 
+                  />
+                </div>
+              </div>
+            ))}
+          </div>
+
+          <div className="mt-12 text-center">
+            <a href={WHATSAPP_URL} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 bg-luxury-white px-8 py-4 rounded-full border border-premium-gold/20 text-black font-bold text-xs uppercase tracking-widest hover:bg-premium-gold hover:text-white transition-all shadow-sm">
+              <MessageCircle size={18} />
+              Quero viver essa transformação
+            </a>
           </div>
         </div>
       </section>

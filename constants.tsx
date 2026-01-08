@@ -33,6 +33,17 @@ export const IMAGES = {
     "https://i.imgur.com/w0DjFer.png",
     "https://i.imgur.com/55b2cgp.png",
     "https://i.imgur.com/5Mrf20T.png",
+  ],
+  TESTIMONIALS: [
+    "https://i.imgur.com/4AxZSBi.png",
+    "https://i.imgur.com/RC1VOFN.png",
+    "https://i.imgur.com/ZUd8D4O.png",
+    "https://i.imgur.com/VIEoiN9.png",
+    "https://i.imgur.com/hLTuxSG.png",
+    "https://i.imgur.com/NpgdXOS.png",
+    "https://i.imgur.com/dL0W3da.png",
+    "https://i.imgur.com/7m4sdfJ.png",
+    "https://i.imgur.com/mXNFupW.png",
   ]
 };
 
