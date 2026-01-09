@@ -12,7 +12,8 @@ import {
   MapPin, 
   X,
   ArrowRight,
-  Navigation
+  Navigation,
+  ExternalLink
 } from 'lucide-react';
 
 const LandingPage: React.FC = () => {
@@ -337,8 +338,46 @@ const LandingPage: React.FC = () => {
         </div>
       </section>
 
+      {/* SEÇÃO DE LOCALIZAÇÃO (MAPA) */}
+      <section id="localizacao" className="py-24 lg:py-32 px-6 lg:px-20 bg-luxury-white/50 scroll-mt-32">
+        <div className="max-w-7xl mx-auto flex flex-col gap-12">
+          <div className="text-center space-y-4">
+            <h2 className="text-3xl lg:text-6xl font-serif text-black">Onde <span className="text-premium-gold italic">nos encontrar</span></h2>
+            <div className="flex items-center justify-center gap-3 text-neutral-600 font-medium">
+              <MapPin size={20} className="text-premium-gold" />
+              <p className="text-sm lg:text-lg">Rua Tiradentes, 106 - Centro • Caarapó/MS</p>
+            </div>
+          </div>
+
+          <div className="relative w-full aspect-video lg:aspect-[21/9] rounded-[2.5rem] lg:rounded-[4rem] overflow-hidden shadow-2xl border-[6px] border-white group">
+            {/* Google Maps Embed */}
+            <iframe 
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3688.083756277085!2d-54.82193262388656!3d-22.632000028784323!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x94884f686c6c547b%3A0x6b2e98c919d3f663!2sR.%20Tiradentes%2C%20106%20-%20Centro%2C%20Caarap%C3%B3%20-%20MS%2C%2079940-000!5e0!3m2!1spt-BR!2sbr!4v1716300000000!5m2!1spt-BR!2sbr" 
+              className="w-full h-full grayscale-[0.3] group-hover:grayscale-0 transition-all duration-1000"
+              style={{ border: 0 }} 
+              allowFullScreen={true} 
+              loading="lazy" 
+              referrerPolicy="no-referrer-when-downgrade"
+            ></iframe>
+            
+            <div className="absolute bottom-6 right-6 lg:bottom-10 lg:right-10">
+              <a 
+                href="https://www.google.com/maps/dir//R.+Tiradentes,+106+-+Centro,+Caarap%C3%B3+-+MS,+79940-000/" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="flex items-center gap-3 bg-white px-6 py-4 rounded-2xl shadow-xl border border-premium-gold/20 text-black font-black text-xs uppercase tracking-widest hover:bg-premium-gold hover:text-white transition-all group/btn"
+              >
+                <Navigation size={18} className="group-hover/btn:rotate-12 transition-transform" />
+                Traçar Rota Agora
+                <ExternalLink size={14} className="opacity-50" />
+              </a>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* 6. CTA FINAL (CONTATO) */}
-      <section id="contato" className="py-32 px-6 text-center bg-luxury-white relative overflow-hidden scroll-mt-32">
+      <section id="contato" className="py-32 px-6 text-center bg-white relative overflow-hidden scroll-mt-32">
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-premium-gold/10 blur-[150px] rounded-full"></div>
         <div className="relative z-10 max-w-4xl mx-auto space-y-12">
           <h2 className="text-4xl lg:text-8xl font-serif text-black leading-tight">O futuro do seu rosto <br/><span className="text-premium-gold italic">em boas mãos.</span></h2>
@@ -352,8 +391,8 @@ const LandingPage: React.FC = () => {
         </div>
       </section>
 
-      {/* RODAPÉ (ONDE NOS ENCONTRAR) */}
-      <footer id="localizacao" className="py-20 px-6 lg:px-20 border-t border-neutral-100 bg-white scroll-mt-32">
+      {/* RODAPÉ ESTRUTURADO */}
+      <footer className="py-20 px-6 lg:px-20 border-t border-neutral-100 bg-white">
         <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-3 gap-16 items-center text-center lg:text-left">
           <div className="space-y-4">
             <p className="font-signature text-5xl text-premium-gold">Renata Sacomam</p>
