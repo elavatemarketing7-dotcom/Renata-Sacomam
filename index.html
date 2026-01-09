@@ -20,6 +20,15 @@
               serif: ['Playfair Display', 'serif'],
               signature: ['Dancing Script', 'cursive'],
             },
+            animation: {
+              'marquee': 'marquee 30s linear infinite',
+            },
+            keyframes: {
+              marquee: {
+                '0%': { transform: 'translateX(0%)' },
+                '100%': { transform: 'translateX(-50%)' },
+              }
+            }
           }
         }
       }
@@ -32,6 +41,7 @@
         font-family: 'Plus Jakarta Sans', sans-serif;
         background-color: #ffffff;
         color: #1a1a1a;
+        scroll-behavior: smooth;
       }
       h1, h2, h3, .font-serif {
         font-family: 'Playfair Display', serif;

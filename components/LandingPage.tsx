@@ -11,17 +11,103 @@ import {
   Star, 
   MapPin, 
   X,
-  ArrowRight
+  ArrowRight,
+  Navigation
 } from 'lucide-react';
 
 const LandingPage: React.FC = () => {
   const [selectedImage, setSelectedImage] = useState<string | null>(null);
 
+  const scrollToSection = (id: string) => {
+    const element = document.getElementById(id);
+    if (element) {
+      const offset = 80; // Ajuste para o navbar fixo
+      const bodyRect = document.body.getBoundingClientRect().top;
+      const elementRect = element.getBoundingClientRect().top;
+      const elementPosition = elementRect - bodyRect;
+      const offsetPosition = elementPosition - offset;
+
+      window.scrollTo({
+        top: offsetPosition,
+        behavior: 'smooth'
+      });
+    }
+  };
+
+  const navItems = [
+    { label: 'Sobre Mim', id: 'sobre' },
+    { label: 'Prova Visual', id: 'prova-visual' },
+    { label: 'Harmonização de ❤️', id: 'harmonizacao' },
+    { label: 'Onde nos Encontrar', id: 'localizacao' },
+    { label: 'Contato', id: 'contato' }
+  ];
+
   return (
     <div className="w-full bg-white min-h-screen pb-10">
       
+      {/* BARRA DE LOGRADOURO DIRECIONAL (MARQUEE) */}
+      <div 
+        className="fixed top-0 left-0 w-full z-[110] bg-black text-white h-8 flex items-center overflow-hidden border-b border-premium-gold/20"
+      >
+        <div className="flex animate-marquee whitespace-nowrap items-center">
+          {[...Array(4)].map((_, i) => (
+            <div key={i} className="flex items-center">
+              {navItems.map((item, idx) => (
+                <button 
+                  key={`${i}-${idx}`}
+                  onClick={() => scrollToSection(item.id)}
+                  className="text-[9px] font-black tracking-[0.3em] uppercase mx-10 flex items-center gap-3 hover:text-premium-gold transition-colors whitespace-nowrap"
+                >
+                  <span className="text-premium-gold">✦</span>
+                  {item.label}
+                </button>
+              ))}
+              <span className="text-[9px] font-black tracking-[0.3em] uppercase mx-10 flex items-center gap-3 text-neutral-500 whitespace-nowrap">
+                <MapPin size={10} className="text-premium-gold" />
+                Rua Tiradentes, 106 - Centro • Caarapó/MS
+              </span>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      {/* NAVBAR FIXO */}
+      <nav className="fixed top-8 left-0 w-full z-[100] bg-white/80 backdrop-blur-md border-b border-neutral-100 px-6 py-4 shadow-sm">
+        <div className="max-w-7xl mx-auto flex items-center justify-between">
+          <div className="cursor-pointer group" onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}>
+            <p className="font-signature text-3xl text-premium-gold leading-none group-hover:scale-105 transition-transform">Renata Sacomam</p>
+          </div>
+          
+          <div className="hidden lg:flex items-center gap-10">
+            {navItems.map((item) => (
+              <button 
+                key={item.id} 
+                onClick={() => scrollToSection(item.id)}
+                className="group flex items-center gap-1 text-[10px] font-black uppercase tracking-[0.2em] text-black/60 hover:text-premium-gold transition-all"
+              >
+                <ChevronRight size={10} className="opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all text-premium-gold" />
+                {item.label}
+              </button>
+            ))}
+          </div>
+
+          {/* Versão Mobile do Menu (Scroll Horizontal) */}
+          <div className="lg:hidden flex overflow-x-auto no-scrollbar gap-6 items-center flex-1 ml-6 -mr-4 pr-6">
+            {navItems.map((item) => (
+              <button 
+                key={item.id} 
+                onClick={() => scrollToSection(item.id)}
+                className="text-[9px] font-black uppercase tracking-[0.2em] text-black/60 whitespace-nowrap active:text-premium-gold"
+              >
+                {item.label === 'Harmonização de ❤️' ? 'Amamos' : item.label.split(' ')[0]}
+              </button>
+            ))}
+          </div>
+        </div>
+      </nav>
+      
       {/* 1. HERO SECTION (WHITE LUXURY) */}
-      <section className="relative h-[90vh] lg:h-screen flex flex-col items-center justify-end px-6 pb-12 lg:pb-24 overflow-hidden bg-luxury-white">
+      <section className="relative h-[90vh] lg:h-screen flex flex-col items-center justify-end px-6 pb-12 lg:pb-24 overflow-hidden bg-luxury-white pt-24">
         <div className="absolute inset-0 z-0">
           <img 
             src={IMAGES.EXPERT_HERO} 
@@ -94,8 +180,7 @@ const LandingPage: React.FC = () => {
                 Resultados naturais e transformadores.
               </p>
               <p className="text-neutral-600 text-base leading-relaxed italic border-l-2 border-premium-gold/30 pl-6">
-                Aperte o play e sinta a diferença de ser cuidada por quem entende que sua beleza é única, 
-                e merece atenção especial.
+                Assista ao vídeo ao lado e sinta a diferença de ser cuidada por quem entende que sua beleza é única.
               </p>
             </div>
             
@@ -107,8 +192,8 @@ const LandingPage: React.FC = () => {
         </div>
       </section>
 
-      {/* 2. BIO SECTION (CLEAN WHITE) */}
-      <section className="py-24 lg:py-40 px-6 lg:px-20 bg-white">
+      {/* 2. BIO SECTION (SOBRE MIM) */}
+      <section id="sobre" className="py-24 lg:py-40 px-6 lg:px-20 bg-white scroll-mt-32">
         <div className="max-w-7xl mx-auto flex flex-col lg:flex-row items-center gap-16 lg:gap-24">
           <div className="relative w-full lg:w-1/2 aspect-square lg:aspect-[4/5] rounded-[3rem] overflow-hidden shadow-2xl border-4 border-white">
             <img src={IMAGES.EXPERT_BIO} alt="Dra Renata" className="w-full h-full object-cover object-top" />
@@ -142,8 +227,8 @@ const LandingPage: React.FC = () => {
         </div>
       </section>
 
-      {/* 3. GALERIA (LUMINOUS MODE) */}
-      <section className="py-24 px-6 lg:px-20 max-w-[1600px] mx-auto bg-luxury-white/30 rounded-[4rem] my-10">
+      {/* 3. GALERIA (PROVA VISUAL) */}
+      <section id="prova-visual" className="py-24 px-6 lg:px-20 max-w-[1600px] mx-auto bg-luxury-white/30 rounded-[4rem] my-10 scroll-mt-32">
         <div className="text-center mb-16 space-y-4">
           <p className="text-premium-gold text-[10px] font-black tracking-[0.6em] uppercase">Resultados Reais</p>
           <h2 className="text-3xl lg:text-6xl font-serif text-black">Galeria de <span className="text-premium-gold italic">Transformações</span></h2>
@@ -158,7 +243,7 @@ const LandingPage: React.FC = () => {
           ))}
         </div>
 
-        <div className="mt-24 space-y-12">
+        <div id="harmonizacao" className="mt-24 space-y-12 scroll-mt-32">
           <p className="text-center text-premium-gold text-xs font-black tracking-[0.5em] uppercase italic">Harmonização Facial de 💚</p>
           <div className="flex gap-4 lg:gap-8 overflow-x-auto pb-10 no-scrollbar snap-x lg:grid lg:grid-cols-4">
             {IMAGES.HARMONIZATION.map((url, i) => (
@@ -212,7 +297,7 @@ const LandingPage: React.FC = () => {
         </div>
       </section>
 
-      {/* 4. DIFERENCIAIS (WHITE & GOLD LUXE) */}
+      {/* DIFERENCIAIS */}
       <section className="py-24 lg:py-40 px-6 lg:px-20 bg-white">
         <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-10 lg:gap-16">
           {[
@@ -231,7 +316,7 @@ const LandingPage: React.FC = () => {
         </div>
       </section>
 
-      {/* 5. JORNADA (LIGHT MODE) */}
+      {/* JORNADA */}
       <section className="py-24 px-6 lg:px-20 max-w-7xl mx-auto">
         <div className="text-center mb-20">
            <h2 className="text-4xl lg:text-6xl font-serif text-black">A sua <span className="text-premium-gold italic">Jornada VIP</span></h2>
@@ -252,8 +337,8 @@ const LandingPage: React.FC = () => {
         </div>
       </section>
 
-      {/* 6. CTA FINAL (GOLD POWER) */}
-      <section className="py-32 px-6 text-center bg-luxury-white relative overflow-hidden">
+      {/* 6. CTA FINAL (CONTATO) */}
+      <section id="contato" className="py-32 px-6 text-center bg-luxury-white relative overflow-hidden scroll-mt-32">
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-premium-gold/10 blur-[150px] rounded-full"></div>
         <div className="relative z-10 max-w-4xl mx-auto space-y-12">
           <h2 className="text-4xl lg:text-8xl font-serif text-black leading-tight">O futuro do seu rosto <br/><span className="text-premium-gold italic">em boas mãos.</span></h2>
@@ -267,8 +352,8 @@ const LandingPage: React.FC = () => {
         </div>
       </section>
 
-      {/* RODAPÉ ESTRUTURADO */}
-      <footer className="py-20 px-6 lg:px-20 border-t border-neutral-100 bg-white">
+      {/* RODAPÉ (ONDE NOS ENCONTRAR) */}
+      <footer id="localizacao" className="py-20 px-6 lg:px-20 border-t border-neutral-100 bg-white scroll-mt-32">
         <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-3 gap-16 items-center text-center lg:text-left">
           <div className="space-y-4">
             <p className="font-signature text-5xl text-premium-gold">Renata Sacomam</p>
