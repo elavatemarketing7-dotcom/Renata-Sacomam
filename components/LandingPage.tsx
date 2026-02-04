@@ -228,23 +228,30 @@ const LandingPage: React.FC = () => {
         </div>
       </section>
 
-      {/* 3. GALERIA (PROVA VISUAL) */}
-      <section id="prova-visual" className="py-24 px-6 lg:px-20 max-w-[1600px] mx-auto bg-luxury-white/30 rounded-[4rem] my-10 scroll-mt-32">
-        <div className="text-center mb-16 space-y-4">
+      {/* 3. GALERIA (PROVA VISUAL) - AGORA EM ROLAGEM INFINITA LENTA */}
+      <section id="prova-visual" className="py-24 bg-luxury-white/30 rounded-[4rem] my-10 scroll-mt-32 overflow-hidden">
+        <div className="text-center mb-16 space-y-4 px-6 lg:px-20">
           <p className="text-premium-gold text-[10px] font-black tracking-[0.6em] uppercase">Resultados Reais</p>
           <h2 className="text-3xl lg:text-6xl font-serif text-black">Galeria de <span className="text-premium-gold italic">Transformações</span></h2>
           <div className="h-1 w-12 bg-premium-gold/20 mx-auto rounded-full"></div>
         </div>
 
-        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4 lg:gap-6">
-          {IMAGES.RESULTS.map((url, i) => (
-            <div key={i} className="aspect-square rounded-[2rem] overflow-hidden bg-white border-4 border-white cursor-pointer hover:scale-105 transition-all duration-500 shadow-xl" onClick={() => setSelectedImage(url)}>
-              <img src={url} alt={`Resultado ${i}`} className="w-full h-full object-cover" />
-            </div>
-          ))}
+        {/* EFEITO DE ROLAGEM INFINITA (BELT) - VELOCIDADE REDUZIDA (60s) */}
+        <div className="relative flex overflow-hidden py-8">
+          <div className="flex animate-marquee-slow whitespace-nowrap gap-4 lg:gap-8 hover:[animation-play-state:paused] cursor-pointer">
+            {[...IMAGES.RESULTS, ...IMAGES.RESULTS].map((url, i) => (
+              <div 
+                key={i} 
+                className="shrink-0 w-[200px] lg:w-[320px] aspect-square rounded-[2rem] overflow-hidden bg-white border-4 border-white shadow-xl hover:scale-110 transition-transform duration-700" 
+                onClick={() => setSelectedImage(url)}
+              >
+                <img src={url} alt={`Resultado ${i}`} className="w-full h-full object-cover" />
+              </div>
+            ))}
+          </div>
         </div>
 
-        <div id="harmonizacao" className="mt-24 space-y-12 scroll-mt-32">
+        <div id="harmonizacao" className="mt-24 space-y-12 scroll-mt-32 px-6 lg:px-20">
           <p className="text-center text-premium-gold text-xs font-black tracking-[0.5em] uppercase italic">Harmonização Facial de 💚</p>
           <div className="flex gap-4 lg:gap-8 overflow-x-auto pb-10 no-scrollbar snap-x lg:grid lg:grid-cols-4">
             {IMAGES.HARMONIZATION.map((url, i) => (
